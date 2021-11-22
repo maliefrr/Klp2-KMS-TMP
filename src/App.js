@@ -6,10 +6,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
 	return (
 		<div>
-			<Header />
-			<Carousel />
-			<WhatYouGet />
-			<Footer />
+			<BrowserRouter>
+				<Header />
+				<Routes>
+					<Route exact path="/" element={((<Carousel />), (<WhatYouGet />))} />
+				</Routes>
+				<Footer />
+			</BrowserRouter>
 		</div>
 	);
 }
