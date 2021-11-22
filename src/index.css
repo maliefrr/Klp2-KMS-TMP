@@ -39,3 +39,48 @@ nav ul li:not(:first-child) {
 	color: #916bbf;
 	transition: 0.3s;
 }
+
+.head {
+	margin-top: 90px;
+	margin-bottom: 15px;
+	z-index: 1;
+}
+
+.hero-section {
+	display: flex;
+	margin-top: 20px;
+	justify-content: space-around;
+}
+
+.hero-section h2 {
+	margin-bottom: 10px;
+}
+
+.hero-section li:not(:last-child) {
+	margin-bottom: 15px;
+}
+
+.hero-section div {
+	position: relative;
+	top: 130px;
+}
+
+.foot {
+	position: relative;
+	width: 100vw;
+	margin-left: 0;
+	margin-top: 40px;
+	padding-top: 29px;
+	padding-bottom: 29px;
+	background-color: #1c0c5b;
+	margin-bottom: 0;
+	box-shadow: 3px -2px 5px 1px rgba(28, 12, 91, 0.7);
+	-webkit-box-shadow: 3px -2px 5px 1px rgba(28, 12, 91, 0.7);
+	-moz-box-shadow: 3px -2px 5px 1px rgba(28, 12, 91, 0.7);
+	bottom: 0;
+}
+
+.foot h5 {
+	text-align: center;
+	color: whitesmoke;
+}
