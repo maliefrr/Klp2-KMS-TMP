@@ -1,8 +1,8 @@
 import React from "react";
 
-const Footer = () => {
+const Footer = ({ margin }) => {
 	return (
-		<div class="foot">
+		<div className="foot" style={{ marginTop: `${margin}px` }}>
 			<h5>2021 &copy; Kelompok 2 TMP</h5>
 		</div>
 	);
