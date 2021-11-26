@@ -7,8 +7,53 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Button from "./components/Button";
 import { useState } from "react";
 import AddNew from "./components/AddNew";
+import Kerohanian from "./components/Kerohanian";
 function App() {
 	const [showAdd, setShowAdd] = useState(false);
+	const [dataProker, setDataProker] = useState([
+		{
+			id: 1,
+			namaDivisi: "kerohanian",
+			namaProker: "Belajar membaca Alqur’an",
+			status: false,
+			penanggungJawab: "Badrun Purnama",
+		},
+		{
+			id: 2,
+			namaDivisi: "kerohanian",
+			namaProker: "Taddarus Alqur’an",
+			status: false,
+			penanggungJawab: "Ld. Hasrinto",
+		},
+		{
+			id: 3,
+			namaDivisi: "kerohanian",
+			namaProker: "Ilkom Beramal",
+			status: false,
+			penanggungJawab: "Badrun Purnama",
+		},
+		{
+			id: 4,
+			namaDivisi: "kerohanian",
+			namaProker: "Ilkom Beramal",
+			status: false,
+			penanggungJawab: "Badrun Purnama",
+		},
+		{
+			id: 5,
+			namaDivisi: "kewirausahaan",
+			namaProker: "Seminar Kewirausahaan ",
+			status: false,
+			penanggungJawab: "Nining Ardianti",
+		},
+		{
+			id: 6,
+			namaDivisi: "kewirausahaan",
+			namaProker: "Usaha HMPS Ilkom",
+			status: false,
+			penanggungJawab: "Muhammad ulil Amri",
+		},
+	]);
 	return (
 		<div>
 			<BrowserRouter>
@@ -35,7 +80,7 @@ function App() {
 										<div className="mb-4">
 											<h2 className="text-center">Divisi HMPS Ilmu Komputer</h2>
 										</div>
-										<Table />
+										<Table data={dataProker} />
 									</div>
 									<div className="col-md-2"></div>
 								</div>{" "}
@@ -53,6 +98,7 @@ function App() {
 										<h3 className="text-center">Divisi Kerohanian</h3>
 										<Button text="Add New" color="#916bbf" onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
 										{showAdd === true ? <AddNew /> : ""}
+										<Kerohanian data={dataProker} />
 									</div>
 									<div className="col-md-2"></div>
 								</div>
