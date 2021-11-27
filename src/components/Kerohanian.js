@@ -14,13 +14,13 @@ const Kerohanian = ({ data }) => {
 				</thead>
 				<tbody>
 					{dataKerohanian.map((el, index) => (
-						<tr key={index}>
+						<tr key={el.id}>
 							<th scope="row">{index + 1}</th>
 							<td>{el.namaProker}</td>
 							<td>{el.penanggungJawab}</td>
 							<td>
 								<div className="mb-3 mt-1">
-									<input className="form-check-input" type="checkbox" />
+									<input className="form-check-input" type="checkbox" defaultChecked={el.status} onClick={() => !el.status} />
 								</div>
 							</td>
 						</tr>

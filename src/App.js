@@ -29,7 +29,7 @@ function App() {
 			id: 3,
 			namaDivisi: "kerohanian",
 			namaProker: "Ilkom Beramal",
-			status: false,
+			status: true,
 			penanggungJawab: "Badrun Purnama",
 		},
 		{
@@ -54,6 +54,10 @@ function App() {
 			penanggungJawab: "Muhammad ulil Amri",
 		},
 	]);
+
+	const addData = ({ proker, penanggungJawab }) => {
+		console.log(proker, penanggungJawab);
+	};
 	return (
 		<div>
 			<BrowserRouter>
@@ -96,8 +100,8 @@ function App() {
 									<div className="col-md-2"></div>
 									<div className="col-md">
 										<h3 className="text-center">Divisi Kerohanian</h3>
-										<Button text="Add New" color="#916bbf" onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
-										{showAdd === true ? <AddNew /> : ""}
+										<Button text={showAdd == false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
+										{showAdd === true ? <AddNew onAdd={addData} /> : ""}
 										<Kerohanian data={dataProker} />
 									</div>
 									<div className="col-md-2"></div>
