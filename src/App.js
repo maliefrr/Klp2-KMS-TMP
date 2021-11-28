@@ -8,6 +8,7 @@ import Button from "./components/Button";
 import { useState } from "react";
 import AddNew from "./components/AddNew";
 import Kerohanian from "./components/Kerohanian";
+import Kewirausahaan from "./components/Kewirausahaan";
 function App() {
 	const [showAdd, setShowAdd] = useState(false);
 	const [dataProker, setDataProker] = useState([
@@ -113,8 +114,8 @@ function App() {
 									<div className="col-md">
 										<h3 className="text-center">Divisi Kerohanian</h3>
 										<Button text={showAdd == false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
-										{showAdd === true ? <AddNew onAdd={addData} divisi="kerohanian" /> : ""}
-										<Kerohanian data={dataProker} />
+										{showAdd === true ? <AddNew onAdd={addData} divisi="kewirausahaan" /> : ""}
+										<Kewirausahaan data={dataProker} />
 									</div>
 									<div className="col-md-2"></div>
 								</div>
