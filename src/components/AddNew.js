@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 
-const AddNew = ({ text, onAdd }) => {
+const AddNew = ({ text, onAdd, divisi }) => {
 	const [proker, setProker] = useState("");
 	const [penanggungJawab, setPenanggungJawab] = useState("");
+	const [status, setStatus] = useState(false);
 	const submit = (e) => {
 		e.preventDefault();
 		if (!proker || !penanggungJawab) {
@@ -11,8 +12,10 @@ const AddNew = ({ text, onAdd }) => {
 			return;
 		}
 		onAdd({
-			proker,
+			namaDivisi: divisi,
+			namaProker: proker,
 			penanggungJawab,
+			status,
 		});
 		setProker("");
 		setPenanggungJawab("");
@@ -39,7 +42,7 @@ const AddNew = ({ text, onAdd }) => {
 							<label htmlFor="status" className="form-label" style={{ marginRight: "10px" }}>
 								Status
 							</label>
-							<input className="form-check-input" type="checkbox" />
+							<input className="form-check-input" type="checkbox" value={status} onChange={(e) => setStatus(e.currentTarget.checked)} />
 							<div className="mt-1">
 								<input type="submit" value="Save Task" className="btn btn-primary" />
 							</div>

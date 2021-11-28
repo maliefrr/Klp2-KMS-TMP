@@ -34,20 +34,13 @@ function App() {
 		},
 		{
 			id: 4,
-			namaDivisi: "kerohanian",
-			namaProker: "Ilkom Beramal",
-			status: false,
-			penanggungJawab: "Badrun Purnama",
-		},
-		{
-			id: 5,
 			namaDivisi: "kewirausahaan",
 			namaProker: "Seminar Kewirausahaan ",
 			status: false,
 			penanggungJawab: "Nining Ardianti",
 		},
 		{
-			id: 6,
+			id: 5,
 			namaDivisi: "kewirausahaan",
 			namaProker: "Usaha HMPS Ilkom",
 			status: false,
@@ -55,8 +48,10 @@ function App() {
 		},
 	]);
 
-	const addData = ({ proker, penanggungJawab }) => {
-		console.log(proker, penanggungJawab);
+	const addData = (data) => {
+		const id = Math.floor(Math.random() * 10000) + 1;
+		const newData = { id, ...data };
+		setDataProker([...dataProker, newData]);
 	};
 	return (
 		<div>
@@ -101,7 +96,24 @@ function App() {
 									<div className="col-md">
 										<h3 className="text-center">Divisi Kerohanian</h3>
 										<Button text={showAdd == false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
-										{showAdd === true ? <AddNew onAdd={addData} /> : ""}
+										{showAdd === true ? <AddNew onAdd={addData} divisi="kerohanian" /> : ""}
+										<Kerohanian data={dataProker} />
+									</div>
+									<div className="col-md-2"></div>
+								</div>
+							</>
+						}
+					/>
+					<Route
+						path="/proker/kewirausahaan"
+						element={
+							<>
+								<div className="mt-4 row">
+									<div className="col-md-2"></div>
+									<div className="col-md">
+										<h3 className="text-center">Divisi Kerohanian</h3>
+										<Button text={showAdd == false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
+										{showAdd === true ? <AddNew onAdd={addData} divisi="kerohanian" /> : ""}
 										<Kerohanian data={dataProker} />
 									</div>
 									<div className="col-md-2"></div>

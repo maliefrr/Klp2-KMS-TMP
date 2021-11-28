@@ -1,6 +1,5 @@
 const Kerohanian = ({ data }) => {
 	const dataKerohanian = [...data].filter((el) => el.namaDivisi === "kerohanian");
-	console.log(dataKerohanian);
 	return (
 		<>
 			<table className="table">
