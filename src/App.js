@@ -5,50 +5,20 @@ import Table from "./components/Table";
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Button from "./components/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddNew from "./components/AddNew";
 import Kerohanian from "./components/Kerohanian";
 import Kewirausahaan from "./components/Kewirausahaan";
+import axios from "axios";
 function App() {
 	const [showAdd, setShowAdd] = useState(false);
-	const [dataProker, setDataProker] = useState([
-		{
-			id: 1,
-			namaDivisi: "kerohanian",
-			namaProker: "Belajar membaca Alqur’an",
-			status: false,
-			penanggungJawab: "Badrun Purnama",
-		},
-		{
-			id: 2,
-			namaDivisi: "kerohanian",
-			namaProker: "Taddarus Alqur’an",
-			status: false,
-			penanggungJawab: "Ld. Hasrinto",
-		},
-		{
-			id: 3,
-			namaDivisi: "kerohanian",
-			namaProker: "Ilkom Beramal",
-			status: true,
-			penanggungJawab: "Badrun Purnama",
-		},
-		{
-			id: 4,
-			namaDivisi: "kewirausahaan",
-			namaProker: "Seminar Kewirausahaan ",
-			status: false,
-			penanggungJawab: "Nining Ardianti",
-		},
-		{
-			id: 5,
-			namaDivisi: "kewirausahaan",
-			namaProker: "Usaha HMPS Ilkom",
-			status: false,
-			penanggungJawab: "Muhammad ulil Amri",
-		},
-	]);
+	const [dataProker, setDataProker] = useState([]);
 
+	useEffect(() => {
+		axios.get("http://localhost:5000/proker").then((response) => setDataProker(response.data));
+	}, []);
+
+	console.log(dataProker);
 	const addData = (data) => {
 		const id = Math.floor(Math.random() * 10000) + 1;
 		const newData = { id, ...data };
