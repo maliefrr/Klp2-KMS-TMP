@@ -18,11 +18,13 @@ function App() {
 		axios.get("http://localhost:5000/proker").then((response) => setDataProker(response.data));
 	}, []);
 
-	console.log(dataProker);
-	const addData = (data) => {
-		const id = Math.floor(Math.random() * 10000) + 1;
-		const newData = { id, ...data };
-		setDataProker([...dataProker, newData]);
+	const addData = ({ namaDivisi, namaProker, status, penanggungJawab }) => {
+		const newData = { namaDivisi, namaProker, status, penanggungJawab };
+		axios.post("http://localhost:5000/proker", newData).then((res) => setDataProker([...dataProker, newData]));
+
+		// const id = Math.floor(Math.random() * 10000) + 1;
+		// const newData = { id, ...data };
+		// setDataProker([...dataProker, newData]);
 	};
 	return (
 		<div>

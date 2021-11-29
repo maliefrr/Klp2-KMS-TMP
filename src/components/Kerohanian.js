@@ -13,7 +13,7 @@ const Kerohanian = ({ data }) => {
 				</thead>
 				<tbody>
 					{dataKerohanian.map((el, index) => (
-						<tr key={el.id}>
+						<tr key={el._id}>
 							<th scope="row">{index + 1}</th>
 							<td>{el.namaProker}</td>
 							<td>{el.penanggungJawab}</td>
