@@ -26,6 +26,11 @@ function App() {
 		// const newData = { id, ...data };
 		// setDataProker([...dataProker, newData]);
 	};
+	const onDelete = (_id) => {
+		axios.delete(`http://localhost:5000/proker/${_id}`).then(() => setDataProker(dataProker.filter((el) => el._id !== _id)));
+		// console.log(_id);
+		// setDataProker(dataProker.filter((el) => el._id !== _id));
+	};
 	return (
 		<div>
 			<BrowserRouter>
@@ -52,6 +57,8 @@ function App() {
 										<div className="mb-4">
 											<h2 className="text-center">Divisi HMPS Ilmu Komputer</h2>
 										</div>
+										<Button text={showAdd === false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
+										{showAdd === true ? <AddNew onAdd={addData} divisi="kerohanian" /> : ""}
 										<Table data={dataProker} />
 									</div>
 									<div className="col-md-2"></div>
@@ -68,9 +75,9 @@ function App() {
 									<div className="col-md-2"></div>
 									<div className="col-md">
 										<h3 className="text-center">Divisi Kerohanian</h3>
-										<Button text={showAdd == false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
+										<Button text={showAdd === false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
 										{showAdd === true ? <AddNew onAdd={addData} divisi="kerohanian" /> : ""}
-										<Kerohanian data={dataProker} />
+										<Kerohanian data={dataProker} onDelete={onDelete} />
 									</div>
 									<div className="col-md-2"></div>
 								</div>
@@ -84,10 +91,10 @@ function App() {
 								<div className="mt-4 row">
 									<div className="col-md-2"></div>
 									<div className="col-md">
-										<h3 className="text-center">Divisi Kerohanian</h3>
-										<Button text={showAdd == false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
+										<h3 className="text-center">Divisi Kewirausahaan</h3>
+										<Button text={showAdd === false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
 										{showAdd === true ? <AddNew onAdd={addData} divisi="kewirausahaan" /> : ""}
-										<Kewirausahaan data={dataProker} />
+										<Kewirausahaan data={dataProker} onDelete={onDelete} />
 									</div>
 									<div className="col-md-2"></div>
 								</div>

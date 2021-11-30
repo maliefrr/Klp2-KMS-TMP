@@ -44,7 +44,7 @@ const AddNew = ({ text, onAdd, divisi }) => {
 							</label>
 							<input className="form-check-input" type="checkbox" value={status} onChange={(e) => setStatus(e.currentTarget.checked)} />
 							<div className="mt-1">
-								<input type="submit" value="Save Task" className="btn btn-primary" />
+								<input type="submit" value="Submit" className="btn btn-primary" />
 							</div>
 						</div>
 					</form>
