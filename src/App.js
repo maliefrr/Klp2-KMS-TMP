@@ -9,8 +9,9 @@ import { useState, useEffect } from "react";
 import AddNew from "./components/AddNew";
 import Kerohanian from "./components/Kerohanian";
 import Kewirausahaan from "./components/Kewirausahaan";
-import axios from "axios";
 import AddNewDivisi from "./components/AddNewDivisi";
+import MinatBakat from "./components/MinatBakat";
+import axios from "axios";
 function App() {
 	const [showAdd, setShowAdd] = useState(false);
 	const [dataProker, setDataProker] = useState([]);
@@ -100,6 +101,22 @@ function App() {
 										<Button text={showAdd === false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
 										{showAdd === true ? <AddNew onAdd={addData} divisi="kewirausahaan" /> : ""}
 										<Kewirausahaan data={dataProker} onDelete={onDelete} onUpdate={updateStatus} />
+									</div>
+									<div className="col-md-2"></div>
+								</div>
+							</>
+						}
+					/>
+					<Route
+						path="/proker/Minat%20&%20Bakat"
+						element={
+							<>
+								<div className="mt-4 row">
+									<div className="col-md-2"></div>
+									<div className="col-md">
+										<Button text={showAdd === false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
+										{showAdd === true ? <AddNew onAdd={addData} divisi="Minat & Bakat" /> : ""}
+										<MinatBakat data={dataProker} onDelete={onDelete} onUpdate={updateStatus} />
 									</div>
 									<div className="col-md-2"></div>
 								</div>
