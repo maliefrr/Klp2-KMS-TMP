@@ -32,6 +32,10 @@ function App() {
 		// console.log(_id);
 		// setDataProker(dataProker.filter((el) => el._id !== _id));
 	};
+	const updateStatus = async ({ id, status }) => {
+		const data = { status };
+		await axios.put(`http://localhost:5000/proker/${id}`, data);
+	};
 	return (
 		<div>
 			<BrowserRouter>
@@ -95,7 +99,7 @@ function App() {
 										<h3 className="text-center">Divisi Kewirausahaan</h3>
 										<Button text={showAdd === false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
 										{showAdd === true ? <AddNew onAdd={addData} divisi="kewirausahaan" /> : ""}
-										<Kewirausahaan data={dataProker} onDelete={onDelete} />
+										<Kewirausahaan data={dataProker} onDelete={onDelete} onUpdate={updateStatus} />
 									</div>
 									<div className="col-md-2"></div>
 								</div>

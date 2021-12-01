@@ -1,6 +1,20 @@
 import Button from "./Button";
-const Kerohanian = ({ data, onDelete }) => {
+import { useState } from "react";
+const Kerohanian = ({ data, onDelete, onUpdate }) => {
 	const dataKewirausahaan = [...data].filter((el) => el.namaDivisi === "kewirausahaan");
+	const [status, setStatus] = useState(false);
+	const [edit, setEdit] = useState(false);
+	const [id, setId] = useState("");
+	const submit = (e) => {
+		e.preventDefault();
+		onUpdate({
+			id,
+			status,
+		});
+		window.location.reload(false);
+		setEdit(false);
+		setStatus(false);
+	};
 	return (
 		<>
 			<table className="table">
@@ -20,13 +34,23 @@ const Kerohanian = ({ data, onDelete }) => {
 								<th scope="row">{index + 1}</th>
 								<td>{el.namaProker}</td>
 								<td>{el.penanggungJawab}</td>
+								<td>{el.status === true ? "Selesai" : "Belum Selesai"}</td>
 								<td>
-									<div className="mb-3 mt-1">
-										<input className="form-check-input" type="checkbox" defaultChecked={el.status} onClick={() => !el.status} />
+									<div className="d-grid gap-2 d-md-flex">
+										{edit === false ? (
+											<>
+												<Button onClick={() => onDelete(el._id)} text={<i className="bi bi-trash-fill"></i>} color="#dc3545" />
+												<Button onClick={() => setEdit(!edit)} edit={setEdit} text={<i className="bi bi-pencil-fill"></i>} color="#0da4db" /> :
+											</>
+										) : (
+											<>
+												<form onSubmit={submit}>
+													<input type="checkbox" className="" value={status} onChange={(e) => setStatus(e.currentTarget.checked)} />
+													<Button text="Selesai" color="green" type="submit" onClick={() => setId(el._id)} />
+												</form>
+											</>
+										)}
 									</div>
-								</td>
-								<td style={{ border: "none" }}>
-									<Button onClick={() => onDelete(el._id)} text={<i className="bi bi-trash-fill"></i>} color="#dc3545" />
 								</td>
 							</tr>
 						))
