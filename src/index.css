@@ -85,3 +85,8 @@ nav ul li:not(:first-child) {
 	text-align: center;
 	color: whitesmoke;
 }
+
+.myRow {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}

@@ -13,6 +13,7 @@ import AddNewDivisi from "./components/AddNewDivisi";
 import MinatBakat from "./components/MinatBakat";
 import Jadwal from "./components/Jadwal";
 import AddSchedule from "./components/AddSchedule";
+import Pengurus from "./components/Pengurus";
 import axios from "axios";
 function App() {
 	const [showAdd, setShowAdd] = useState(false);
@@ -160,6 +161,16 @@ function App() {
 									<div className="col-md-2"></div>
 								</div>
 								<Footer margin="213" />
+							</>
+						}
+					/>
+					<Route
+						path="/pengurus"
+						element={
+							<>
+								<h3 className="text-center mt-4">Nama - Nama Pengurus HMPS Ilmu Komputer </h3>
+								<Pengurus />
+								<Footer />
 							</>
 						}
 					/>
