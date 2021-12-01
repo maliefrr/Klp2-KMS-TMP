@@ -12,6 +12,7 @@ import Kewirausahaan from "./components/Kewirausahaan";
 import AddNewDivisi from "./components/AddNewDivisi";
 import MinatBakat from "./components/MinatBakat";
 import Jadwal from "./components/Jadwal";
+import AddSchedule from "./components/AddSchedule";
 import axios from "axios";
 function App() {
 	const [showAdd, setShowAdd] = useState(false);
@@ -29,6 +30,14 @@ function App() {
 	const addData = ({ namaDivisi, namaProker, status, penanggungJawab }) => {
 		const newData = { namaDivisi, namaProker, status, penanggungJawab };
 		axios.post("http://localhost:5000/proker", newData).then((res) => setDataProker([...dataProker, newData]));
+
+		// const id = Math.floor(Math.random() * 10000) + 1;
+		// const newData = { id, ...data };
+		// setDataProker([...dataProker, newData]);
+	};
+	const addJadwal = ({ agenda, waktu }) => {
+		const newData = { agenda, waktu };
+		axios.post("http://localhost:5000/jadwal", newData).then((res) => setDataJadwal([...dataJadwal, newData]));
 
 		// const id = Math.floor(Math.random() * 10000) + 1;
 		// const newData = { id, ...data };
@@ -139,11 +148,13 @@ function App() {
 										<div className="mb-4">
 											<h2 className="text-center">Agenda HMPS Ilmu Komputer</h2>
 										</div>
+										<Button text={showAdd === false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
+										{showAdd === true ? <AddSchedule onAdd={addJadwal} /> : ""}
 										<Jadwal data={dataJadwal} />
 									</div>
 									<div className="col-md-2"></div>
 								</div>
-								<Footer margin="253" />
+								<Footer margin="213" />
 							</>
 						}
 					/>
