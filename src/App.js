@@ -48,6 +48,11 @@ function App() {
 		// console.log(_id);
 		// setDataProker(dataProker.filter((el) => el._id !== _id));
 	};
+	const deleteJadwal = (_id) => {
+		axios.delete(`http://localhost:5000/jadwal/${_id}`).then(() => setDataJadwal(dataJadwal.filter((el) => el._id !== _id)));
+		// console.log(_id);
+		// setDataProker(dataProker.filter((el) => el._id !== _id));
+	};
 	const updateStatus = async ({ id, status }) => {
 		const data = { status };
 		await axios.put(`http://localhost:5000/proker/${id}`, data);
@@ -150,7 +155,7 @@ function App() {
 										</div>
 										<Button text={showAdd === false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
 										{showAdd === true ? <AddSchedule onAdd={addJadwal} /> : ""}
-										<Jadwal data={dataJadwal} />
+										<Jadwal data={dataJadwal} onDelete={deleteJadwal} />
 									</div>
 									<div className="col-md-2"></div>
 								</div>

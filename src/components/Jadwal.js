@@ -20,7 +20,7 @@ const Jadwal = ({ data, onDelete }) => {
 							<td>{el.agenda}</td>
 							<td>{el.waktu}</td>
 							<td>
-								<Button text={<i className="bi bi-trash-fill"></i>} color="#dc3545" />
+								<Button onClick={() => onDelete(el._id)} text={<i className="bi bi-trash-fill"></i>} color="#dc3545" />
 							</td>
 						</tr>
 					))}
