@@ -1,6 +1,6 @@
 import Button from "./Button";
 import { useState } from "react";
-const Kerohanian = ({ data, onDelete, onUpdate }) => {
+const Kewirausahaan = ({ data, onDelete, onUpdate }) => {
 	const dataKewirausahaan = [...data].filter((el) => el.namaDivisi === "kewirausahaan");
 	const [status, setStatus] = useState(false);
 	const [edit, setEdit] = useState(false);
@@ -69,4 +69,4 @@ const Kerohanian = ({ data, onDelete, onUpdate }) => {
 	);
 };
 
-export default Kerohanian;
+export default Kewirausahaan;

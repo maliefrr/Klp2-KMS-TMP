@@ -11,14 +11,20 @@ import Kerohanian from "./components/Kerohanian";
 import Kewirausahaan from "./components/Kewirausahaan";
 import AddNewDivisi from "./components/AddNewDivisi";
 import MinatBakat from "./components/MinatBakat";
+import Jadwal from "./components/Jadwal";
 import axios from "axios";
 function App() {
 	const [showAdd, setShowAdd] = useState(false);
 	const [dataProker, setDataProker] = useState([]);
+	const [dataJadwal, setDataJadwal] = useState([]);
 
 	useEffect(() => {
 		axios.get("http://localhost:5000/proker").then((response) => setDataProker(response.data));
 	}, []);
+
+	useEffect(() => {
+		axios.get("http://localhost:5000/jadwal").then((response) => setDataJadwal(response.data));
+	});
 
 	const addData = ({ namaDivisi, namaProker, status, penanggungJawab }) => {
 		const newData = { namaDivisi, namaProker, status, penanggungJawab };
@@ -83,7 +89,7 @@ function App() {
 										<h3 className="text-center">Divisi Kerohanian</h3>
 										<Button text={showAdd === false ? "Add New" : "Close"} color={showAdd === false ? "#916bbf" : "#d92404"} onClick={() => setShowAdd(!showAdd)} showAdd={setShowAdd} />
 										{showAdd === true ? <AddNew onAdd={addData} divisi="kerohanian" /> : ""}
-										<Kerohanian data={dataProker} onDelete={onDelete} />
+										<Kerohanian data={dataProker} onDelete={onDelete} onUpdate={updateStatus} />
 									</div>
 									<div className="col-md-2"></div>
 								</div>
@@ -120,6 +126,24 @@ function App() {
 									</div>
 									<div className="col-md-2"></div>
 								</div>
+							</>
+						}
+					/>
+					<Route
+						path="/jadwal"
+						element={
+							<>
+								<div className="row mt-4">
+									<div className="col-md-2"></div>
+									<div className="col-md mt-4">
+										<div className="mb-4">
+											<h2 className="text-center">Agenda HMPS Ilmu Komputer</h2>
+										</div>
+										<Jadwal data={dataJadwal} />
+									</div>
+									<div className="col-md-2"></div>
+								</div>
+								<Footer margin="253" />
 							</>
 						}
 					/>

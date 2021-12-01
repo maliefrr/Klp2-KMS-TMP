@@ -1,6 +1,20 @@
 import Button from "./Button";
-const Kerohanian = ({ data, onDelete }) => {
-	const dataKerohanian = [...data].filter((el) => el.namaDivisi === "kerohanian");
+import { useState } from "react";
+const Kerohanian = ({ data, onDelete, onUpdate }) => {
+	const dataKewirausahaan = [...data].filter((el) => el.namaDivisi === "kerohanian");
+	const [status, setStatus] = useState(false);
+	const [edit, setEdit] = useState(false);
+	const [id, setId] = useState("");
+	const submit = (e) => {
+		e.preventDefault();
+		onUpdate({
+			id,
+			status,
+		});
+		window.location.reload(false);
+		setEdit(false);
+		setStatus(false);
+	};
 	return (
 		<>
 			<table className="table">
@@ -14,19 +28,29 @@ const Kerohanian = ({ data, onDelete }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{dataKerohanian.length >= 1 ? (
-						dataKerohanian.map((el, index) => (
+					{dataKewirausahaan.length >= 1 ? (
+						dataKewirausahaan.map((el, index) => (
 							<tr key={el._id}>
 								<th scope="row">{index + 1}</th>
 								<td>{el.namaProker}</td>
 								<td>{el.penanggungJawab}</td>
+								<td>{el.status === true ? "Selesai" : "Belum Selesai"}</td>
 								<td>
-									<div className="mb-3 mt-1">
-										<input className="form-check-input" type="checkbox" defaultChecked={el.status} onClick={() => !el.status} />
-									</div>
-								</td>
-								<td style={{ border: "none" }}>
-									<Button onClick={() => onDelete(el._id)} text={<i className="bi bi-trash-fill"></i>} color="#dc3545" />
+									{edit === false ? (
+										<div className="d-grid gap-2 d-md-flex">
+											<Button onClick={() => onDelete(el._id)} text={<i className="bi bi-trash-fill"></i>} color="#dc3545" />
+											<Button onClick={() => setEdit(!edit)} edit={setEdit} text={<i className="bi bi-pencil-fill"></i>} color="#0da4db" /> :
+										</div>
+									) : (
+										<>
+											<form onSubmit={submit}>
+												<div className="d-grid gap-2 d-md-flex">
+													<input type="checkbox" className="mt-2 form-check-input" value={status} onChange={(e) => setStatus(e.currentTarget.checked)} />
+													<Button text="Save" color="green" type="submit" onClick={() => setId(el._id)} />
+												</div>
+											</form>
+										</>
+									)}
 								</td>
 							</tr>
 						))
